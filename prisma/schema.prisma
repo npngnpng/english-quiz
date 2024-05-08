@@ -8,15 +8,10 @@ datasource db {
 }
 
 model quiz {
-  user_id   BigInt
-  word_id   BigInt
+  word_id   BigInt   @id
   choice    String   @db.VarChar(20)
   create_at DateTime @default(now()) @db.DateTime(0)
-  user      user     @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_USER_ON_QUIZ")
   word      word     @relation(fields: [word_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_WORD_ON_QUIZ")
-
-  @@id([user_id, word_id])
-  @@index([word_id], map: "FK_WORD_ON_QUIZ")
 }
 
 model user {
@@ -24,7 +19,6 @@ model user {
   name       String @db.VarChar(30)
   account_id String @unique(map: "account_id") @db.VarChar(30)
   password   String @db.VarChar(60)
-  quiz       quiz[]
   word       word[]
 }
 
@@ -33,7 +27,7 @@ model word {
   english String @db.VarChar(50)
   korean  String @db.VarChar(20)
   user_id BigInt
-  quiz    quiz[]
+  quiz    quiz?
   user    user   @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_USER")
 
   @@unique([english, korean, user_id], map: "WORD_UNIQUE")
