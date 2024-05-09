@@ -1,11 +1,14 @@
 import { Body, Controller, HttpCode, Post } from '@nestjs/common';
 import { CreateUserService } from '../service/create-user.service';
-import { CreateUserRequest } from './dto/user.request';
+import { CreateUserRequest, LoginRequest } from './dto/user.request';
+import { LoginService } from '../service/login.service';
+import { LoginResponse } from './dto/user.response';
 
 @Controller('users')
 export class UserController {
     constructor(
-        private readonly createUserService: CreateUserService
+        private readonly createUserService: CreateUserService,
+        private readonly loginService: LoginService
     ) {
     }
 
@@ -13,5 +16,10 @@ export class UserController {
     @Post()
     public async createUser(@Body() request: CreateUserRequest): Promise<void> {
         await this.createUserService.execute(request);
+    }
+
+    @Post('login')
+    public async login(@Body() request: LoginRequest): Promise<LoginResponse> {
+        return await this.loginService.execute(request);
     }
 }
