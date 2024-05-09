@@ -1,12 +1,12 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
-import { Prisma, PrismaClient } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
 import * as runtime from '@prisma/client/runtime/library';
 
 @Injectable()
 export class PrismaClientService extends PrismaClient implements OnModuleInit {
     constructor() {
         super({
-            log: ["error", "info", "query", "warn"]
+            log: ['error', 'info', 'query', 'warn']
         });
     }
 
