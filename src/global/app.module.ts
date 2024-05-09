@@ -13,6 +13,9 @@ import { QuizModule } from '../domain/quiz/quiz.module';
         QuizModule,
         ConfigModule.forRoot({
             isGlobal: true
+        }),
+        CacheModule.register({
+            isGlobal: true
         })
     ]
 })
