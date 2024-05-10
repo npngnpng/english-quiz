@@ -17,6 +17,10 @@ export interface WordRepository {
         korean: string,
         quiz: { wordId: bigint, choice: string, createdAt: Date },
     }[]>;
+
+    findRandomWord(userId: bigint): Promise<Word[]>;
+
+    findRandomKoreans(userId: bigint, exceptWord: string): Promise<{ korean: string }[]>;
 }
 
 export const WordRepository = Symbol('WordRepository');
