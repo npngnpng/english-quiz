@@ -5,6 +5,7 @@ import { WordRepository } from './repository/word.repository';
 import { WordRepositoryImpl } from './repository/word.repository.impl';
 import { UpdateWordService } from './service/update-word.service';
 import { DeleteWordService } from './service/delete-word.service';
+import { QueryWordsService } from './service/query-words.service';
 
 const WORD_REPOSITORY = { provide: WordRepository, useClass: WordRepositoryImpl };
 
@@ -14,7 +15,8 @@ const WORD_REPOSITORY = { provide: WordRepository, useClass: WordRepositoryImpl 
         WORD_REPOSITORY,
         CreateWordService,
         UpdateWordService,
-        DeleteWordService
+        DeleteWordService,
+        QueryWordsService
     ],
     exports: [WORD_REPOSITORY],
     controllers: [WordController]
