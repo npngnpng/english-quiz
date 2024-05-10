@@ -55,4 +55,25 @@ export class WordRepositoryImpl implements WordRepository {
             }
         });
     }
+
+    findAllByUserId(userId: bigint): Promise<{
+        id: bigint;
+        english: string;
+        korean: string,
+        quiz: { wordId: bigint, choice: string, createAt: Date },
+    }[]> {
+        return this.prisma.getClient().word.findMany({
+            select: {
+                id: true,
+                english: true,
+                korean: true,
+                quiz: true
+            },
+            where: {
+                userId: userId
+            }
+        });
+    }
+
+
 }
