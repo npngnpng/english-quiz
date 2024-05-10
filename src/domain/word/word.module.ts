@@ -7,7 +7,7 @@ import { UpdateWordService } from './service/update-word.service';
 
 const WORD_REPOSITORY = { provide: WordRepository, useClass: WordRepositoryImpl };
 
-@Module({})
+@Global()
 @Module({
     providers: [WORD_REPOSITORY, CreateWordService, UpdateWordService],
     exports: [WORD_REPOSITORY],
