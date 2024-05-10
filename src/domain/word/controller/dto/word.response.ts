@@ -2,9 +2,9 @@ export class WordResponse {
     id: number;
     english: string;
     korean: string;
-    quiz: { isCorrect: boolean, createAt: Date };
+    quiz: { isCorrect: boolean, createdAt: Date };
 
-    constructor(id: number, english: string, korean: string, quiz?: { isCorrect: boolean; createAt: Date }) {
+    constructor(id: number, english: string, korean: string, quiz?: { isCorrect: boolean; createdAt: Date }) {
         this.id = id;
         this.english = english;
         this.korean = korean;

@@ -15,7 +15,7 @@ export interface WordRepository {
         id: bigint;
         english: string;
         korean: string,
-        quiz: { wordId: bigint, choice: string, createAt: Date },
+        quiz: { wordId: bigint, choice: string, createdAt: Date },
     }[]>;
 }
 

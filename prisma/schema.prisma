@@ -8,10 +8,10 @@ datasource db {
 }
 
 model Quiz {
-  wordId   BigInt   @id @map("word_id")
-  choice   String   @db.VarChar(20)
-  createAt DateTime @default(now()) @map("create_at") @db.DateTime(0)
-  word     Word     @relation(fields: [wordId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_WORD_ON_QUIZ")
+  wordId    BigInt   @id @map("word_id")
+  choice    String   @db.VarChar(20)
+  createdAt DateTime @default(now()) @map("created_at") @db.DateTime(0)
+  word      Word     @relation(fields: [wordId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_WORD_ON_QUIZ")
 
   @@map("quiz")
 }

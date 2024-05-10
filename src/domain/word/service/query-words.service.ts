@@ -20,7 +20,7 @@ export class QueryWordsService {
                     word.korean,
                     word.quiz ? {
                         isCorrect: word.quiz.choice === word.korean,
-                        createAt: word.quiz.createAt
+                        createdAt: word.quiz.createdAt
                     } : null
                 );
             })
