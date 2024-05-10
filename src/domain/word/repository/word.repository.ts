@@ -8,6 +8,8 @@ export interface WordRepository {
     updateWord(word: Word): Promise<Word>;
 
     findById(id: bigint): Promise<Word>;
+
+    deleteWord(word: Word): Promise<Word>;
 }
 
 export const WordRepository = Symbol('WordRepository');

@@ -47,4 +47,12 @@ export class WordRepositoryImpl implements WordRepository {
             }
         });
     }
+
+    deleteWord(word: Word): Promise<Word> {
+        return this.prisma.getClient().word.delete({
+            where: {
+                id: word.id
+            }
+        });
+    }
 }
