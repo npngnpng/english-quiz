@@ -12,7 +12,7 @@ export class TransactionService {
     public async transaction<T>(fn: () => Promise<T>): Promise<T> {
         return this.prisma.$transaction((tx) => {
             this.prisma.setTransaction(tx);
-            return fn();
+            return fn().finally(() => this.prisma.setTransaction(null));
         });
     }
 }

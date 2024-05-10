@@ -4,6 +4,10 @@ import { ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { PasswordService } from './password.service';
 import { JwtGuard } from './guard/jwt.guard';
+import { PrismaTransactionInterceptor } from '../interceptor/prisma-transaction.interceptor';
+import { APP_INTERCEPTOR } from '@nestjs/core';
+
+const GLOBAL_INTERCEPTOR = { provide: APP_INTERCEPTOR, useClass: PrismaTransactionInterceptor };
 
 @Global()
 @Module({
@@ -16,7 +20,7 @@ import { JwtGuard } from './guard/jwt.guard';
             })
         })
     ],
-    providers: [JwtProvider, PasswordService, JwtGuard],
+    providers: [JwtProvider, PasswordService, JwtGuard, GLOBAL_INTERCEPTOR],
     exports: [JwtProvider, PasswordService, JwtGuard]
 })
 export class AuthModule {
