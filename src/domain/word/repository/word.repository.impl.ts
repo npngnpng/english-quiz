@@ -71,6 +71,9 @@ export class WordRepositoryImpl implements WordRepository {
             },
             where: {
                 userId: userId
+            },
+            orderBy: {
+                english: 'asc'
             }
         });
     }
