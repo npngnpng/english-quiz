@@ -48,19 +48,19 @@ export class WordRepositoryImpl implements WordRepository {
         });
     }
 
-    deleteWord(word: Word): Promise<Word> {
-        return this.prisma.getClient().word.delete({
+    async deleteWord(word: Word): Promise<void> {
+        await this.prisma.getClient().word.delete({
             where: {
                 id: word.id
             }
         });
     }
 
-    findAllByUserId(userId: bigint): Promise<{
+    async findAllByUserId(userId: bigint): Promise<{
         id: bigint;
         english: string;
         korean: string,
-        quiz: { wordId: bigint, choice: string, createAt: Date },
+        quiz: { wordId: bigint, choice: string, createdAt: Date },
     }[]> {
         return this.prisma.getClient().word.findMany({
             select: {

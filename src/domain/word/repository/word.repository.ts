@@ -9,7 +9,7 @@ export interface WordRepository {
 
     findById(id: bigint): Promise<Word>;
 
-    deleteWord(word: Word): Promise<Word>;
+    deleteWord(word: Word): Promise<void>;
 
     findAllByUserId(userId: bigint): Promise<{
         id: bigint;
