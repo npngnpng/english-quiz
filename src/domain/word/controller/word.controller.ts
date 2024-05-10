@@ -9,6 +9,7 @@ import { DeleteWordService } from '../service/delete-word.service';
 import { QueryWordsService } from '../service/query-words.service';
 import { QueryWordsResponse } from './dto/word.response';
 
+@UseGuards(JwtGuard)
 @Controller('words')
 export class WordController {
     constructor(
@@ -19,14 +20,12 @@ export class WordController {
     ) {
     }
 
-    @UseGuards(JwtGuard)
     @HttpCode(201)
     @Post()
     public async createWord(@CurrentUser() currentUser: User, @Body() request: CreateWordRequest): Promise<void> {
         await this.createWordService.execute(currentUser, request);
     }
 
-    @UseGuards(JwtGuard)
     @HttpCode(204)
     @Put(':id')
     public async updateWord(
@@ -37,14 +36,12 @@ export class WordController {
         return this.updateWordService.execute(wordId, request, currentUser);
     }
 
-    @UseGuards(JwtGuard)
     @HttpCode(204)
     @Delete(':id')
     public async deleteWord(@Param('id') wordId: bigint, @CurrentUser() currentUser: User): Promise<void> {
         await this.deleteWordService.execute(wordId, currentUser);
     }
 
-    @UseGuards(JwtGuard)
     @Get()
     public async queryWords(@CurrentUser() currentUser: User): Promise<QueryWordsResponse> {
         return await this.queryWordsService.execute(currentUser);

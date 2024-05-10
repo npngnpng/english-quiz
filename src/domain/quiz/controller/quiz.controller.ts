@@ -7,6 +7,7 @@ import { SolveQuizService } from '../service/solve-quiz.service';
 import { QueryQuizService } from '../service/query-quiz.service';
 import { SolveQuizResponse } from './dto/quiz.response';
 
+@UseGuards(JwtGuard)
 @Controller('quiz')
 export class QuizController {
     constructor(
@@ -15,7 +16,6 @@ export class QuizController {
     ) {
     }
 
-    @UseGuards(JwtGuard)
     @HttpCode(201)
     @Post(':wordId')
     public async createQuiz(
@@ -26,7 +26,6 @@ export class QuizController {
         return await this.createQuizService.execute(wordId, request, currentUser);
     }
 
-    @UseGuards(JwtGuard)
     @Get()
     public async queryQuiz(
         @Query('word_id') wordId: bigint,
