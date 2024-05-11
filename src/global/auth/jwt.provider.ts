@@ -15,7 +15,7 @@ export class JwtProvider {
         const accessToken = await this.generateToken(accountId, 'access', '1h');
         const refreshToken = await this.generateToken(accountId, 'refresh', '14d');
 
-        await this.cacheManager.set(accountId, refreshToken);
+        await this.cacheManager.set(refreshToken, accessToken, 1000 * 60 * 60 * 24 * 14);
 
         return { accessToken, refreshToken };
     }
