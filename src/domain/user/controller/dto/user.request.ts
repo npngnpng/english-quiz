@@ -3,8 +3,3 @@ export class CreateUserRequest {
     accountId: string;
     password: string;
 }
-
-export class LoginRequest {
-    accountId: string;
-    password: string;
-}

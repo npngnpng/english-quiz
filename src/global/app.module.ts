@@ -5,7 +5,7 @@ import { UserModule } from '../domain/user/user.module';
 import { WordModule } from '../domain/word/word.module';
 import { QuizModule } from '../domain/quiz/quiz.module';
 import { CacheModule } from '@nestjs/cache-manager';
-import { AuthModule } from './auth/auth.module';
+import { AuthModule } from '../domain/auth/auth.module';
 
 @Module({
     imports: [

@@ -1,9 +1,9 @@
 import { Inject, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
-import { UserRepository } from '../repository/user.repository';
-import { LoginRequest } from '../controller/dto/user.request';
+import { UserRepository } from '../../user/repository/user.repository';
 import { JwtProvider } from '../../../global/auth/jwt.provider';
-import { LoginResponse } from '../controller/dto/user.response';
+import { TokenResponse } from '../../user/controller/dto/user.response';
 import { PasswordEncoder } from '../../../global/auth/password.encoder';
+import { LoginRequest } from '../controller/dto/auth.request';
 
 @Injectable()
 export class LoginService {
@@ -16,7 +16,7 @@ export class LoginService {
     ) {
     }
 
-    async execute(request: LoginRequest): Promise<LoginResponse> {
+    async execute(request: LoginRequest): Promise<TokenResponse> {
         const user = await this.userRepository.findByAccountId(request.accountId);
         if (!user) {
             throw new NotFoundException('User Not Found');
