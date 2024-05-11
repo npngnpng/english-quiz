@@ -2,14 +2,15 @@ import { ConflictException, Inject, Injectable } from '@nestjs/common';
 import { UserRepository } from '../repository/user.repository';
 import { CreateUserRequest } from '../controller/dto/user.request';
 import { User } from '../model/user.model';
-import { PasswordService } from '../../../global/auth/password.service';
+import { PasswordEncoder } from '../../../global/auth/password.encoder';
 
 @Injectable()
 export class CreateUserService {
     constructor(
         @Inject(UserRepository)
         private readonly userRepository: UserRepository,
-        private readonly passwordService: PasswordService
+        @Inject(PasswordEncoder)
+        private readonly passwordEncoder: PasswordEncoder
     ) {
     }
 
@@ -22,7 +23,7 @@ export class CreateUserService {
         await this.userRepository.saveUser(new User(
             request.name,
             request.accountId,
-            await this.passwordService.encode(request.password)
+            await this.passwordEncoder.encode(request.password)
         ));
     }
 }

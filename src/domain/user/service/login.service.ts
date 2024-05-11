@@ -3,7 +3,7 @@ import { UserRepository } from '../repository/user.repository';
 import { LoginRequest } from '../controller/dto/user.request';
 import { JwtProvider } from '../../../global/auth/jwt.provider';
 import { LoginResponse } from '../controller/dto/user.response';
-import { PasswordService } from '../../../global/auth/password.service';
+import { PasswordEncoder } from '../../../global/auth/password.encoder';
 
 @Injectable()
 export class LoginService {
@@ -11,7 +11,8 @@ export class LoginService {
         @Inject(UserRepository)
         private readonly userRepository: UserRepository,
         private readonly jwtProvider: JwtProvider,
-        private readonly passwordService: PasswordService
+        @Inject(PasswordEncoder)
+        private readonly passwordEncoder: PasswordEncoder
     ) {
     }
 
@@ -21,7 +22,7 @@ export class LoginService {
             throw new NotFoundException('User Not Found');
         }
 
-        if (!(await this.passwordService.matchPassword(request.password, user.password))) {
+        if (!(await this.passwordEncoder.matchPassword(request.password, user.password))) {
             throw new UnauthorizedException('Invalid Password');
         }
 
