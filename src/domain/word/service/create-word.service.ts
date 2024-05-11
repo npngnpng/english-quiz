@@ -12,7 +12,7 @@ export class CreateWordService {
     ) {
     }
 
-    public async execute(currentUser: User, request: CreateWordRequest) {
+    async execute(currentUser: User, request: CreateWordRequest) {
         if (await this.wordRepository.findByUserIdAndEnglishAndKorean(
             currentUser.id,
             request.english,

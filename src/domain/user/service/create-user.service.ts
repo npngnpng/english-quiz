@@ -13,7 +13,7 @@ export class CreateUserService {
     ) {
     }
 
-    public async execute(request: CreateUserRequest): Promise<void> {
+    async execute(request: CreateUserRequest): Promise<void> {
         const user = await this.userRepository.findByAccountId(request.accountId);
         if (user) {
             throw new ConflictException('User Already Exists');

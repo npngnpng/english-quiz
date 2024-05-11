@@ -22,13 +22,13 @@ export class WordController {
 
     @HttpCode(201)
     @Post()
-    public async createWord(@CurrentUser() currentUser: User, @Body() request: CreateWordRequest): Promise<void> {
+    async createWord(@CurrentUser() currentUser: User, @Body() request: CreateWordRequest): Promise<void> {
         await this.createWordService.execute(currentUser, request);
     }
 
     @HttpCode(204)
     @Put(':id')
-    public async updateWord(
+    async updateWord(
         @Param('id') wordId: bigint,
         @Body() request: UpdateWordRequest,
         @CurrentUser() currentUser: User
@@ -38,12 +38,12 @@ export class WordController {
 
     @HttpCode(204)
     @Delete(':id')
-    public async deleteWord(@Param('id') wordId: bigint, @CurrentUser() currentUser: User): Promise<void> {
+    async deleteWord(@Param('id') wordId: bigint, @CurrentUser() currentUser: User): Promise<void> {
         await this.deleteWordService.execute(wordId, currentUser);
     }
 
     @Get()
-    public async queryWords(@CurrentUser() currentUser: User): Promise<QueryWordsResponse> {
+    async queryWords(@CurrentUser() currentUser: User): Promise<QueryWordsResponse> {
         return await this.queryWordsService.execute(currentUser);
     }
 }

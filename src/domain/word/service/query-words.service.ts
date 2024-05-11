@@ -11,7 +11,7 @@ export class QueryWordsService {
     ) {
     }
 
-    public async execute(currentUser: User): Promise<QueryWordsResponse> {
+    async execute(currentUser: User): Promise<QueryWordsResponse> {
         return new QueryWordsResponse(
             (await this.wordRepository.findAllByUserId(currentUser.id)).map((word) => {
                 return new WordResponse(

@@ -18,7 +18,7 @@ export class QuizController {
 
     @HttpCode(201)
     @Post(':wordId')
-    public async createQuiz(
+    async createQuiz(
         @Param('wordId') wordId: bigint,
         @Body() request: SolveQuizRequest,
         @CurrentUser() currentUser: User
@@ -27,7 +27,7 @@ export class QuizController {
     }
 
     @Get()
-    public async queryQuiz(
+    async queryQuiz(
         @Query('word_id') wordId: bigint,
         @CurrentUser() currentUser: User
     ) {

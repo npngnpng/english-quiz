@@ -12,7 +12,7 @@ export class UpdateWordService {
     ) {
     }
 
-    public async execute(wordId: bigint, request: UpdateWordRequest, currentUser: User) {
+    async execute(wordId: bigint, request: UpdateWordRequest, currentUser: User) {
         const word = await this.wordRepository.findById(wordId);
         if (!word) {
             throw new NotFoundException('Word Not Found');

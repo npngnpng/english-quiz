@@ -14,12 +14,12 @@ export class UserController {
 
     @HttpCode(201)
     @Post()
-    public async createUser(@Body() request: CreateUserRequest): Promise<void> {
+    async createUser(@Body() request: CreateUserRequest): Promise<void> {
         await this.createUserService.execute(request);
     }
 
     @Post('login')
-    public async login(@Body() request: LoginRequest): Promise<LoginResponse> {
+    async login(@Body() request: LoginRequest): Promise<LoginResponse> {
         return await this.loginService.execute(request);
     }
 }

@@ -14,7 +14,7 @@ export class QueryQuizService {
     ) {
     }
 
-    public async execute(wordId: bigint, currentUser: User): Promise<QueryQuizResponse> {
+    async execute(wordId: bigint, currentUser: User): Promise<QueryQuizResponse> {
         const word = wordId ?
             await this.wordRepository.findById(wordId) :
             (await this.wordRepository.findRandomWord(currentUser.id))[0];

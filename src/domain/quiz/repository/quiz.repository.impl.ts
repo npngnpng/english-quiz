@@ -10,7 +10,7 @@ export class QuizRepositoryImpl implements QuizRepository {
     ) {
     }
 
-    public async saveQuiz(quiz: Quiz): Promise<Quiz> {
+    async saveQuiz(quiz: Quiz): Promise<Quiz> {
         return this.prisma.getClient().quiz.create({
             data: {
                 wordId: quiz.wordId,
@@ -19,7 +19,7 @@ export class QuizRepositoryImpl implements QuizRepository {
         });
     }
 
-    public async findByWordId(wordId: bigint): Promise<Quiz> {
+    async findByWordId(wordId: bigint): Promise<Quiz> {
         return this.prisma.getClient().quiz.findUnique({
             where: {
                 wordId: wordId

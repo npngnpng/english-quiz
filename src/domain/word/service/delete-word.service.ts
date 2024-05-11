@@ -10,7 +10,7 @@ export class DeleteWordService {
     ) {
     }
 
-    public async execute(wordId: bigint, currentUser: User) {
+    async execute(wordId: bigint, currentUser: User) {
         const word = await this.wordRepository.findById(wordId);
         if (!word) {
             throw new NotFoundException('Word Not Found');

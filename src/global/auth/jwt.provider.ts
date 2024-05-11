@@ -11,7 +11,7 @@ export class JwtProvider {
     ) {
     }
 
-    public async generateTokens(accountId: string) {
+    async generateTokens(accountId: string) {
         const accessToken = await this.generateToken(accountId, 'access', '1h');
         const refreshToken = await this.generateToken(accountId, 'refresh', '14d');
 

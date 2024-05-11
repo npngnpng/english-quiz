@@ -15,7 +15,7 @@ export class LoginService {
     ) {
     }
 
-    public async execute(request: LoginRequest): Promise<LoginResponse> {
+    async execute(request: LoginRequest): Promise<LoginResponse> {
         const user = await this.userRepository.findByAccountId(request.accountId);
         if (!user) {
             throw new NotFoundException('User Not Found');

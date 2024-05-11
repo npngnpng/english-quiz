@@ -10,7 +10,7 @@ export class UserRepositoryImpl implements UserRepository {
     ) {
     }
 
-    public async saveUser(user: User): Promise<User> {
+    async saveUser(user: User): Promise<User> {
         return this.prisma.getClient().user.create({
             data: {
                 name: user.name,
@@ -20,7 +20,7 @@ export class UserRepositoryImpl implements UserRepository {
         });
     }
 
-    public async findByAccountId(accountId: string): Promise<User | null> {
+    async findByAccountId(accountId: string): Promise<User | null> {
         return this.prisma.getClient().user.findUnique({
             where: {
                 accountId: accountId

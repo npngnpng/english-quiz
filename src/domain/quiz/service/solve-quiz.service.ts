@@ -16,7 +16,7 @@ export class SolveQuizService {
     ) {
     }
 
-    public async execute(wordId: bigint, request: SolveQuizRequest, currentUser: User): Promise<SolveQuizResponse> {
+    async execute(wordId: bigint, request: SolveQuizRequest, currentUser: User): Promise<SolveQuizResponse> {
         const word = await this.wordRepository.findById(wordId);
         const quiz = await this.quizRepository.findByWordId(wordId);
         if (!word) {
