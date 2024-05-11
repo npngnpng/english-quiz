@@ -79,28 +79,14 @@ export class WordRepositoryImpl implements WordRepository {
         });
     }
 
-    async findRandomWord(userId: bigint): Promise<Word[]> {
+    async findRandomWord(userId: bigint, exceptWord: string, limit: number): Promise<Word[]> {
         return this.prisma.getClient().$queryRaw(
             Prisma.sql`
                 SELECT id, english, korean, user_id
                 FROM word
-                         LEFT JOIN quiz on word.id = quiz.word_id
-                WHERE user_id = ${userId}
-                  AND quiz.word_id is null
-                ORDER BY RAND() LIMIT 1
-            `
-        );
-    }
-
-    async findRandomKoreans(userId: bigint, exceptWord: string): Promise<{ korean: string }[]> {
-        return this.prisma.getClient().$queryRaw(
-            Prisma.sql`
-                SELECT korean
-                FROM word
-                         LEFT JOIN quiz on word.id = quiz.word_id
                 WHERE user_id = ${userId}
                   AND korean not in (${exceptWord})
-                ORDER BY RAND() LIMIT 3
+                ORDER BY RAND() LIMIT ${limit}
             `
         );
     }
