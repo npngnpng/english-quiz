@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpCode, Param, Post, Query, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, Param, ParseIntPipe, Post, Query, UseGuards } from '@nestjs/common';
 import { JwtGuard } from '../../../global/auth/guard/jwt.guard';
 import { SolveQuizRequest } from './dto/quiz.request';
 import { CurrentUser } from '../../../global/decorator/current-user.decorator';
@@ -19,7 +19,7 @@ export class QuizController {
     @HttpCode(201)
     @Post(':wordId')
     async createQuiz(
-        @Param('wordId') wordId: bigint,
+        @Param('wordId', ParseIntPipe) wordId: bigint,
         @Body() request: SolveQuizRequest,
         @CurrentUser() currentUser: User
     ): Promise<SolveQuizResponse> {
@@ -28,7 +28,7 @@ export class QuizController {
 
     @Get()
     async queryQuiz(
-        @Query('word_id') wordId: bigint,
+        @Query('word_id', ParseIntPipe) wordId: bigint,
         @CurrentUser() currentUser: User
     ) {
         return await this.queryQuizService.execute(wordId, currentUser);

@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, Param, ParseIntPipe, Post, Put, UseGuards } from '@nestjs/common';
 import { CreateWordService } from '../service/create-word.service';
 import { CurrentUser } from '../../../global/decorator/current-user.decorator';
 import { User } from '../../user/model/user.model';
@@ -29,7 +29,7 @@ export class WordController {
     @HttpCode(204)
     @Put(':id')
     async updateWord(
-        @Param('id') wordId: bigint,
+        @Param('id', ParseIntPipe) wordId: bigint,
         @Body() request: UpdateWordRequest,
         @CurrentUser() currentUser: User
     ): Promise<void> {
@@ -38,7 +38,7 @@ export class WordController {
 
     @HttpCode(204)
     @Delete(':id')
-    async deleteWord(@Param('id') wordId: bigint, @CurrentUser() currentUser: User): Promise<void> {
+    async deleteWord(@Param('id', ParseIntPipe) wordId: bigint, @CurrentUser() currentUser: User): Promise<void> {
         await this.deleteWordService.execute(wordId, currentUser);
     }
 
