@@ -1,13 +1,13 @@
 import { Body, Controller, Delete, Get, HttpCode, Param, ParseIntPipe, Post, Put, UseGuards } from '@nestjs/common';
-import { CreateWordService } from '../service/create-word.service';
-import { CurrentUser } from '../../../global/decorator/current-user.decorator';
-import { User } from '../../user/model/user.model';
-import { CreateWordRequest, UpdateWordRequest } from './dto/word.request';
-import { JwtGuard } from '../../../global/auth/guard/jwt.guard';
-import { UpdateWordService } from '../service/update-word.service';
-import { DeleteWordService } from '../service/delete-word.service';
-import { QueryWordsService } from '../service/query-words.service';
-import { QueryWordsResponse } from './dto/word.response';
+import { CreateWordService } from '../service/create-word.service.js';
+import { CurrentUser } from '../../../global/decorator/current-user.decorator.js';
+import { User } from '../../user/model/user.model.js';
+import { CreateWordRequest, UpdateWordRequest } from './dto/word.request.js';
+import { JwtGuard } from '../../../global/auth/guard/jwt.guard.js';
+import { UpdateWordService } from '../service/update-word.service.js';
+import { DeleteWordService } from '../service/delete-word.service.js';
+import { QueryWordsService } from '../service/query-words.service.js';
+import { QueryWordsResponse } from './dto/word.response.js';
 
 @UseGuards(JwtGuard)
 @Controller('words')
@@ -29,7 +29,7 @@ export class WordController {
     @HttpCode(204)
     @Put(':id')
     async updateWord(
-        @Param('id', ParseIntPipe) wordId: bigint,
+        @Param('id', ParseIntPipe) wordId: number,
         @Body() request: UpdateWordRequest,
         @CurrentUser() currentUser: User
     ): Promise<void> {
@@ -38,7 +38,7 @@ export class WordController {
 
     @HttpCode(204)
     @Delete(':id')
-    async deleteWord(@Param('id', ParseIntPipe) wordId: bigint, @CurrentUser() currentUser: User): Promise<void> {
+    async deleteWord(@Param('id', ParseIntPipe) wordId: number, @CurrentUser() currentUser: User): Promise<void> {
         await this.deleteWordService.execute(wordId, currentUser);
     }
 

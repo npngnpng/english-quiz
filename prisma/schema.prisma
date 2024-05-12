@@ -8,7 +8,7 @@ datasource db {
 }
 
 model Quiz {
-  wordId    BigInt   @id @map("word_id")
+  wordId    Int      @id @map("word_id")
   choice    String   @db.VarChar(20)
   createdAt DateTime @default(now()) @map("created_at") @db.DateTime(0)
   word      Word     @relation(fields: [wordId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_WORD_ON_QUIZ")
@@ -17,7 +17,7 @@ model Quiz {
 }
 
 model User {
-  id        BigInt @id @default(autoincrement())
+  id        Int    @id @default(autoincrement())
   name      String @db.VarChar(30)
   accountId String @unique(map: "account_id") @map("account_id") @db.VarChar(30)
   password  String @db.VarChar(60)
@@ -27,10 +27,10 @@ model User {
 }
 
 model Word {
-  id      BigInt @id @default(autoincrement())
+  id      Int    @id @default(autoincrement())
   english String @db.VarChar(50)
   korean  String @db.VarChar(20)
-  userId  BigInt @map("user_id")
+  userId  Int    @map("user_id")
   quiz    Quiz?
   user    User   @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_USER")
 

@@ -1,11 +1,11 @@
 export class Word {
-    id: bigint;
+    id: number;
     english: string;
     korean: string;
-    userId: bigint;
+    userId: number;
 
-    constructor(english: string, korean: string, userId: bigint, id?: bigint) {
-        this.id = id ? id : BigInt(0);
+    constructor(english: string, korean: string, userId: number, id?: number) {
+        this.id = id ? id : 0;
         this.english = english;
         this.korean = korean;
         this.userId = userId;

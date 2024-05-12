@@ -1,10 +1,10 @@
 import { ConflictException, ForbiddenException, Inject, Injectable, NotFoundException } from '@nestjs/common';
-import { QuizRepository } from '../repository/quiz.repository';
-import { WordRepository } from '../../word/repository/word.repository';
-import { SolveQuizRequest } from '../controller/dto/quiz.request';
-import { User } from '../../user/model/user.model';
-import { Quiz } from '../model/quiz.model';
-import { SolveQuizResponse } from '../controller/dto/quiz.response';
+import { QuizRepository } from '../repository/quiz.repository.js';
+import { WordRepository } from '../../word/repository/word.repository.js';
+import { SolveQuizRequest } from '../controller/dto/quiz.request.js';
+import { User } from '../../user/model/user.model.js';
+import { Quiz } from '../model/quiz.model.js';
+import { SolveQuizResponse } from '../controller/dto/quiz.response.js';
 
 @Injectable()
 export class SolveQuizService {
@@ -16,7 +16,7 @@ export class SolveQuizService {
     ) {
     }
 
-    async execute(wordId: bigint, request: SolveQuizRequest, currentUser: User): Promise<SolveQuizResponse> {
+    async execute(wordId: number, request: SolveQuizRequest, currentUser: User): Promise<SolveQuizResponse> {
         const word = await this.wordRepository.findById(wordId);
         const quiz = await this.quizRepository.findByWordId(wordId);
         if (!word) {

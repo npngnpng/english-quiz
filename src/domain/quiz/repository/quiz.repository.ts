@@ -1,11 +1,11 @@
-import { Quiz } from '../model/quiz.model';
+import { Quiz } from '../model/quiz.model.js';
 
 export interface QuizRepository {
     saveQuiz(quiz: Quiz): Promise<Quiz>;
 
-    findByWordId(wordId: bigint): Promise<Quiz>;
+    findByWordId(wordId: number): Promise<Quiz>;
 
-    deleteQuiz(wordId: bigint): Promise<void>;
+    deleteQuiz(wordId: number): Promise<void>;
 }
 
 export const QuizRepository = Symbol('QuizRepository');

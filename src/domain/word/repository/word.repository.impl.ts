@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaClientService } from '../../../global/prisma/prisma.client';
-import { WordRepository } from './word.repository';
-import { Word } from '../model/word.model';
+import { PrismaClientService } from '../../../global/prisma/prisma.client.js';
+import { WordRepository } from './word.repository.js';
+import { Word } from '../model/word.model.js';
 import { Prisma } from '@prisma/client';
 
 @Injectable()
@@ -21,7 +21,7 @@ export class WordRepositoryImpl implements WordRepository {
         });
     }
 
-    async findByUserIdAndEnglishAndKorean(userId: bigint, english: string, korean: string): Promise<Word> {
+    async findByUserIdAndEnglishAndKorean(userId: number, english: string, korean: string): Promise<Word> {
         return this.prisma.getClient().word.findUnique({
             where: {
                 english_korean_userId: { english, korean, userId }
@@ -41,7 +41,7 @@ export class WordRepositoryImpl implements WordRepository {
         });
     }
 
-    async findById(id: bigint): Promise<Word> {
+    async findById(id: number): Promise<Word> {
         return this.prisma.getClient().word.findUnique({
             where: {
                 id: id
@@ -57,11 +57,11 @@ export class WordRepositoryImpl implements WordRepository {
         });
     }
 
-    async findAllByUserId(userId: bigint): Promise<{
-        id: bigint;
+    async findAllByUserId(userId: number): Promise<{
+        id: number;
         english: string;
         korean: string,
-        quiz: { wordId: bigint, choice: string, createdAt: Date },
+        quiz: { wordId: number, choice: string, createdAt: Date },
     }[]> {
         return this.prisma.getClient().word.findMany({
             select: {
@@ -79,7 +79,7 @@ export class WordRepositoryImpl implements WordRepository {
         });
     }
 
-    async findRandomWord(userId: bigint, exceptWord: string, limit: number): Promise<Word[]> {
+    async findRandomWord(userId: number, exceptWord: string, limit: number): Promise<Word[]> {
         return this.prisma.getClient().$queryRaw(
             Prisma.sql`
                 SELECT id, english, korean, user_id

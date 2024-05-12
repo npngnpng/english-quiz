@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { QuizRepository } from './quiz.repository';
-import { PrismaClientService } from '../../../global/prisma/prisma.client';
-import { Quiz } from '../model/quiz.model';
+import { QuizRepository } from './quiz.repository.js';
+import { PrismaClientService } from '../../../global/prisma/prisma.client.js';
+import { Quiz } from '../model/quiz.model.js';
 
 @Injectable()
 export class QuizRepositoryImpl implements QuizRepository {
@@ -19,7 +19,7 @@ export class QuizRepositoryImpl implements QuizRepository {
         });
     }
 
-    async findByWordId(wordId: bigint): Promise<Quiz> {
+    async findByWordId(wordId: number): Promise<Quiz> {
         return this.prisma.getClient().quiz.findUnique({
             where: {
                 wordId: wordId
@@ -27,7 +27,7 @@ export class QuizRepositoryImpl implements QuizRepository {
         });
     }
 
-    async deleteQuiz(wordId: bigint): Promise<void> {
+    async deleteQuiz(wordId: number): Promise<void> {
         await this.prisma.getClient().quiz.delete({
             where: {
                 wordId: wordId

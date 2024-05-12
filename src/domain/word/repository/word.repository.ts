@@ -1,24 +1,24 @@
-import { Word } from '../model/word.model';
+import { Word } from '../model/word.model.js';
 
 export interface WordRepository {
     saveWord(word: Word): Promise<Word>;
 
-    findByUserIdAndEnglishAndKorean(userId: bigint, english: string, korean: string): Promise<Word>;
+    findByUserIdAndEnglishAndKorean(userId: number, english: string, korean: string): Promise<Word>;
 
     updateWord(word: Word): Promise<Word>;
 
-    findById(id: bigint): Promise<Word>;
+    findById(id: number): Promise<Word>;
 
     deleteWord(word: Word): Promise<void>;
 
-    findAllByUserId(userId: bigint): Promise<{
-        id: bigint;
+    findAllByUserId(userId: number): Promise<{
+        id: number;
         english: string;
         korean: string,
-        quiz: { wordId: bigint, choice: string, createdAt: Date },
+        quiz: { wordId: number, choice: string, createdAt: Date },
     }[]>;
 
-    findRandomWord(userId: bigint, exceptKorean: string, limit: number): Promise<Word[]>
+    findRandomWord(userId: number, exceptKorean: string, limit: number): Promise<Word[]>
 }
 
 export const WordRepository = Symbol('WordRepository');

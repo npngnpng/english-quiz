@@ -1,8 +1,8 @@
 import { ForbiddenException, Inject, Injectable, NotFoundException } from '@nestjs/common';
-import { WordRepository } from '../repository/word.repository';
-import { UpdateWordRequest } from '../controller/dto/word.request';
-import { User } from '../../user/model/user.model';
-import { Word } from '../model/word.model';
+import { WordRepository } from '../repository/word.repository.js';
+import { UpdateWordRequest } from '../controller/dto/word.request.js';
+import { User } from '../../user/model/user.model.js';
+import { Word } from '../model/word.model.js';
 
 @Injectable()
 export class UpdateWordService {
@@ -12,7 +12,7 @@ export class UpdateWordService {
     ) {
     }
 
-    async execute(wordId: bigint, request: UpdateWordRequest, currentUser: User) {
+    async execute(wordId: number, request: UpdateWordRequest, currentUser: User) {
         const word = await this.wordRepository.findById(wordId);
         if (!word) {
             throw new NotFoundException('Word Not Found');

@@ -1,6 +1,6 @@
 import { ForbiddenException, Inject, Injectable, NotFoundException } from '@nestjs/common';
-import { WordRepository } from '../repository/word.repository';
-import { User } from '../../user/model/user.model';
+import { WordRepository } from '../repository/word.repository.js';
+import { User } from '../../user/model/user.model.js';
 
 @Injectable()
 export class DeleteWordService {
@@ -10,7 +10,7 @@ export class DeleteWordService {
     ) {
     }
 
-    async execute(wordId: bigint, currentUser: User) {
+    async execute(wordId: number, currentUser: User) {
         const word = await this.wordRepository.findById(wordId);
         if (!word) {
             throw new NotFoundException('Word Not Found');

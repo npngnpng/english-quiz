@@ -1,7 +1,7 @@
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
-import { WordRepository } from '../../word/repository/word.repository';
-import { User } from '../../user/model/user.model';
-import { QueryQuizResponse } from '../controller/dto/quiz.response';
+import { WordRepository } from '../../word/repository/word.repository.js';
+import { User } from '../../user/model/user.model.js';
+import { QueryQuizResponse } from '../controller/dto/quiz.response.js';
 
 @Injectable()
 export class QueryQuizService {
@@ -11,7 +11,7 @@ export class QueryQuizService {
     ) {
     }
 
-    async execute(wordId: bigint, currentUser: User): Promise<QueryQuizResponse> {
+    async execute(wordId: number, currentUser: User): Promise<QueryQuizResponse> {
         const word = wordId ?
             await this.wordRepository.findById(wordId) :
             (await this.wordRepository.findRandomWord(currentUser.id, '', 1))[0];
