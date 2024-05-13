@@ -3,6 +3,22 @@
 ## ERD
 <img width="805" alt="image" src="https://github.com/npngnpng/english-quiz/assets/103028187/3935f097-d7ac-405d-9098-e7356a3182a4">
 
+## Libraries
+
+- **NestJS**
+  - 필수 조건
+- **Typescript**
+  - NestJS 기본 설정 언어입니다.
+- **Prisma**
+  - 필수 조건
+- **bcrypt**
+  - 비밀번호 암호화를 위해 사용하였습니다.
+- **class-validator**
+  - request validation을 위해 사용하였습니다.
+- **cache-manager**
+  - refresh token을 저장하는 용도로 사용하였습니다.
+- **AdminJS**
+  - 어드민 패널 구현을 위해 사용하였습니다.
 
 ## Modules
 ### Domain Module 
@@ -57,3 +73,9 @@ QueryString으로 word-id를 넣어 그 단어에 대한 퀴즈를 조회할 수
 **퀴즈 풀기** (`POST` `/quiz/{word-id}`)\
 퀴즈 조회에서 조회된 4개의 한글 뜻중 한가지를 선택해 퀴즈를 풀 수 있습니다.
 
+### Admin
+AdminJS 라이브러리를 이용해 어드민 웹을 구현하였습니다.
+(사진)
+왼쪽 네비게이션에서 User를 선택해 사용자 정보를 확인해 볼 수 있습니다.
+(사진)
+사용자를 선택해 사용자가 작성한 단어와 퀴즈들을 확인해 볼 수 있습니다.
