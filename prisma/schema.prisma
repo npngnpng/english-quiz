@@ -14,6 +14,7 @@ model Quiz {
   id        Int      @id @default(autoincrement())
   userId    Int      @map("user_id")
   isCorrect Boolean  @map("is_correct")
+  cash      cash[]
   word      Word     @relation(fields: [wordId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_WORD_ON_QUIZ")
   user      User     @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "quiz_ibfk_2")
 
@@ -26,6 +27,7 @@ model User {
   name      String @db.VarChar(30)
   accountId String @unique(map: "account_id") @map("account_id") @db.VarChar(30)
   password  String @db.VarChar(60)
+  cash      cash[]
   quiz      Quiz[]
   word      Word[]
 
@@ -43,4 +45,16 @@ model Word {
   @@unique([english, korean, userId], map: "WORD_UNIQUE")
   @@index([userId], map: "FK_USER")
   @@map("word")
+}
+
+model cash {
+  id     Int  @id @default(autoincrement())
+  reward Int
+  userId Int  @map("user_id")
+  quizId Int  @map("quiz_id")
+  quiz   Quiz @relation(fields: [quizId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "QUIZ_FK_ON_CASH")
+  user   User @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "USER_FK_ON_CASH")
+
+  @@index([quizId], map: "QUIZ_FK_ON_CASH")
+  @@index([userId], map: "USER_FK_ON_CASH")
 }
