@@ -16,3 +16,8 @@ export class Quiz {
         this.createdAt = createdAt;
     }
 }
+
+export function updateQuiz(quiz: Quiz, choice: string, isCorrect: boolean) {
+    quiz.choice = choice;
+    quiz.isCorrect = isCorrect;
+}

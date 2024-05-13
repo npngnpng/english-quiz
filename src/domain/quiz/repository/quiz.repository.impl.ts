@@ -36,4 +36,16 @@ export class QuizRepositoryImpl implements QuizRepository {
             }
         });
     }
+
+    async updateQuiz(quiz: Quiz): Promise<Quiz> {
+        return this.prisma.getClient().quiz.update({
+            where: {
+                id: quiz.id
+            },
+            data: {
+                choice: quiz.choice,
+                isCorrect: quiz.isCorrect
+            }
+        });
+    }
 }

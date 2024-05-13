@@ -6,6 +6,8 @@ export interface QuizRepository {
     findByWordId(wordId: number): Promise<Quiz>;
 
     deleteQuiz(wordId: number): Promise<void>;
+
+    updateQuiz(quiz: Quiz): Promise<Quiz>
 }
 
 export const QuizRepository = Symbol('QuizRepository');

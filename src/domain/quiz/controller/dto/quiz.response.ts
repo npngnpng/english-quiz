@@ -12,10 +12,10 @@ export class QueryQuizResponse {
 
 export class SolveQuizResponse {
     isCorrect: boolean;
-    answer: string;
+    reward: number;
 
-    constructor(isCorrect: boolean, answer: string) {
+    constructor(isCorrect: boolean, reward: number) {
         this.isCorrect = isCorrect;
-        this.answer = answer;
+        this.reward = reward;
     }
 }
