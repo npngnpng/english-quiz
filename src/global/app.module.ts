@@ -1,14 +1,16 @@
 import { Module } from '@nestjs/common';
+import { PrismaModule } from './prisma/prisma.module.js';
+import { UserModule } from '../domain/user/user.module.js';
+import { WordModule } from '../domain/word/word.module.js';
+import { QuizModule } from '../domain/quiz/quiz.module.js';
+import { AuthModule } from '../domain/auth/auth.module.js';
 import { ConfigModule } from '@nestjs/config';
-import { PrismaModule } from './prisma/prisma.module';
-import { UserModule } from '../domain/user/user.module';
-import { WordModule } from '../domain/word/word.module';
-import { QuizModule } from '../domain/quiz/quiz.module';
 import { CacheModule } from '@nestjs/cache-manager';
-import { AuthModule } from '../domain/auth/auth.module';
+import { AdminModule } from './admin/admin.module.js';
 
 @Module({
     imports: [
+        AdminModule,
         PrismaModule,
         UserModule,
         WordModule,
@@ -22,5 +24,6 @@ import { AuthModule } from '../domain/auth/auth.module';
         })
     ]
 })
+
 export class AppModule {
 }

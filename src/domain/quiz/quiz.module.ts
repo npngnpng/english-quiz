@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
-import { QuizRepository } from './repository/quiz.repository';
-import { QuizRepositoryImpl } from './repository/quiz.repository.impl';
-import { QuizController } from './controller/quiz.controller';
-import { SolveQuizService } from './service/solve-quiz.service';
-import { QueryQuizService } from './service/query-quiz.service';
+import { QuizRepository } from './repository/quiz.repository.js';
+import { QuizRepositoryImpl } from './repository/quiz.repository.impl.js';
+import { QuizController } from './controller/quiz.controller.js';
+import { SolveQuizService } from './service/solve-quiz.service.js';
+import { QueryQuizService } from './service/query-quiz.service.js';
 
 const QUIZ_REPOSITORY = { provide: QuizRepository, useClass: QuizRepositoryImpl };
 

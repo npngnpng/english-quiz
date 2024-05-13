@@ -1,8 +1,8 @@
 import { ConflictException, Inject, Injectable } from '@nestjs/common';
-import { WordRepository } from '../repository/word.repository';
-import { User } from '../../user/model/user.model';
-import { CreateWordRequest } from '../controller/dto/word.request';
-import { Word } from '../model/word.model';
+import { WordRepository } from '../repository/word.repository.js';
+import { User } from '../../user/model/user.model.js';
+import { CreateWordRequest } from '../controller/dto/word.request.js';
+import { Word } from '../model/word.model.js';
 
 @Injectable()
 export class CreateWordService {

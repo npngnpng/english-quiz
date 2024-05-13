@@ -1,6 +1,6 @@
 import { CallHandler, ExecutionContext, Injectable, NestInterceptor } from '@nestjs/common';
 import { lastValueFrom, Observable, of } from 'rxjs';
-import { TransactionService } from '../prisma/transaction.service';
+import { TransactionService } from '../prisma/transaction.service.js';
 
 @Injectable()
 export class PrismaTransactionInterceptor implements NestInterceptor {

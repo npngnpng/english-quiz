@@ -1,8 +1,8 @@
 import { Body, Controller, Headers, Post, Put } from '@nestjs/common';
-import { LoginService } from '../service/login.service';
-import { TokenResponse } from '../../user/controller/dto/user.response';
-import { LoginRequest } from './dto/auth.request';
-import { ReissueService } from '../service/reissue.service';
+import { LoginService } from '../service/login.service.js';
+import { TokenResponse } from '../../user/controller/dto/user.response.js';
+import { LoginRequest } from './dto/auth.request.js';
+import { ReissueService } from '../service/reissue.service.js';
 
 @Controller('auth')
 export class AuthController {

@@ -1,11 +1,11 @@
 import { Global, Module } from '@nestjs/common';
-import { CreateWordService } from './service/create-word.service';
-import { WordController } from './controller/word.controller';
-import { WordRepository } from './repository/word.repository';
-import { WordRepositoryImpl } from './repository/word.repository.impl';
-import { UpdateWordService } from './service/update-word.service';
-import { DeleteWordService } from './service/delete-word.service';
-import { QueryWordsService } from './service/query-words.service';
+import { CreateWordService } from './service/create-word.service.js';
+import { WordController } from './controller/word.controller.js';
+import { WordRepository } from './repository/word.repository.js';
+import { WordRepositoryImpl } from './repository/word.repository.impl.js';
+import { UpdateWordService } from './service/update-word.service.js';
+import { DeleteWordService } from './service/delete-word.service.js';
+import { QueryWordsService } from './service/query-words.service.js';
 
 const WORD_REPOSITORY = { provide: WordRepository, useClass: WordRepositoryImpl };
 

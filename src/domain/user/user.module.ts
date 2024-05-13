@@ -1,8 +1,8 @@
 import { Global, Module } from '@nestjs/common';
-import { UserRepository } from './repository/user.repository';
-import { UserRepositoryImpl } from './repository/user.repository.impl';
-import { UserController } from './controller/user.controller';
-import { CreateUserService } from './service/create-user.service';
+import { UserRepository } from './repository/user.repository.js';
+import { UserRepositoryImpl } from './repository/user.repository.impl.js';
+import { CreateUserService } from './service/create-user.service.js';
+import { UserController } from './controller/user.controller.js';
 
 const USER_REPOSITORY = { provide: UserRepository, useClass: UserRepositoryImpl };
 

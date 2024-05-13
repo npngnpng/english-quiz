@@ -1,4 +1,4 @@
-import { User } from '../model/user.model';
+import { User } from '../model/user.model.js';
 
 export interface UserRepository {
     saveUser(user: User): Promise<User>;

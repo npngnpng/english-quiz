@@ -1,6 +1,6 @@
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
-import { JwtProvider } from '../../../global/auth/jwt.provider';
-import { TokenResponse } from '../../user/controller/dto/user.response';
+import { JwtProvider } from '../../../global/auth/jwt.provider.js';
+import { TokenResponse } from '../../user/controller/dto/user.response.js';
 import { Cache, CACHE_MANAGER } from '@nestjs/cache-manager';
 
 @Injectable()

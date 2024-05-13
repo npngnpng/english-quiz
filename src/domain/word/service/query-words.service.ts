@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { WordRepository } from '../repository/word.repository';
-import { User } from '../../user/model/user.model';
-import { QueryWordsResponse, WordResponse } from '../controller/dto/word.response';
+import { WordRepository } from '../repository/word.repository.js';
+import { User } from '../../user/model/user.model.js';
+import { QueryWordsResponse, WordResponse } from '../controller/dto/word.response.js';
 
 @Injectable()
 export class QueryWordsService {

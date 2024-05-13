@@ -1,9 +1,9 @@
 import { Inject, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
-import { UserRepository } from '../../user/repository/user.repository';
-import { JwtProvider } from '../../../global/auth/jwt.provider';
-import { TokenResponse } from '../../user/controller/dto/user.response';
-import { PasswordEncoder } from '../../../global/auth/password.encoder';
-import { LoginRequest } from '../controller/dto/auth.request';
+import { UserRepository } from '../../user/repository/user.repository.js';
+import { JwtProvider } from '../../../global/auth/jwt.provider.js';
+import { TokenResponse } from '../../user/controller/dto/user.response.js';
+import { PasswordEncoder } from '../../../global/auth/password.encoder.js';
+import { LoginRequest } from '../controller/dto/auth.request.js';
 
 @Injectable()
 export class LoginService {

@@ -1,8 +1,8 @@
 import { ConflictException, Inject, Injectable } from '@nestjs/common';
-import { UserRepository } from '../repository/user.repository';
-import { CreateUserRequest } from '../controller/dto/user.request';
-import { User } from '../model/user.model';
-import { PasswordEncoder } from '../../../global/auth/password.encoder';
+import { UserRepository } from '../repository/user.repository.js';
+import { CreateUserRequest } from '../controller/dto/user.request.js';
+import { User } from '../model/user.model.js';
+import { PasswordEncoder } from '../../../global/auth/password.encoder.js';
 
 @Injectable()
 export class CreateUserService {
