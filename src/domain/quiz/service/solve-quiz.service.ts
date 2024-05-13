@@ -36,6 +36,8 @@ export class SolveQuizService {
 
         await this.quizRepository.saveQuiz(new Quiz(
             word.id,
+            currentUser.id,
+            request.choice === word.korean,
             request.choice
         ));
 

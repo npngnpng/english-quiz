@@ -13,7 +13,9 @@ export class QuizRepositoryImpl implements QuizRepository {
     async saveQuiz(quiz: Quiz): Promise<Quiz> {
         return this.prisma.getClient().quiz.create({
             data: {
+                userId: quiz.userId,
                 wordId: quiz.wordId,
+                isCorrect: quiz.isCorrect,
                 choice: quiz.choice
             }
         });
