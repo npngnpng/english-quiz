@@ -1,6 +1,9 @@
 # english-quiz
 내가 공부하고 싶은 단어를 저장하고, 퀴즈로 풀어볼 수 있는 서비스입니다.
 ## ERD
+<img width="805" alt="image" src="https://github.com/npngnpng/english-quiz/assets/103028187/3935f097-d7ac-405d-9098-e7356a3182a4">
+
+
 ## Modules
 ### Domain Module 
 서비스 기능이 존재하는 사용자, 인증, 단어, 퀴즈 각 도메인 별로 모듈을 구성하였습니다.
