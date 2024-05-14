@@ -67,7 +67,7 @@ export class SolveQuizService {
         reward: number,
         cash: Cash
     ) {
-        if (choice === korean) {
+        if (choice === korean && reward != 0) {
             await this.cashHistoryRepository.saveCashHistory(new CashHistory(
                 reward,
                 userId,
