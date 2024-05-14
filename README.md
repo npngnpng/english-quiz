@@ -3,25 +3,27 @@
 ## ERD
 <img width="804" alt="image" src="https://github.com/npngnpng/english-quiz/assets/103028187/3459067d-883e-48e3-8f61-024a57ee410a">
 
+## Table
+### 
 
-## Libraries
+# Libraries
 
-- **NestJS**
-  - 필수 조건
-- **Typescript**
-  - NestJS 기본 설정 언어입니다.
-- **Prisma**
-  - 필수 조건
-- **bcrypt**
-  - 비밀번호 암호화를 위해 사용하였습니다.
-- **class-validator**
-  - request validation을 위해 사용하였습니다.
-- **cache-manager**
-  - refresh token을 저장하는 용도로 사용하였습니다.
-- **AdminJS**
-  - 어드민 패널 구현을 위해 사용하였습니다.
+### **NestJS**
+필수 조건
+### **Typescript**
+NestJS 기본 설정 언어입니다.
+### **Prisma**
+필수 조건
+### **bcrypt**
+비밀번호 암호화를 위해 사용하였습니다.
+### **class-validator**
+request validation을 위해 사용하였습니다.
+### **cache-manager**
+refresh token을 저장하는 용도로 사용하였습니다.
+### **AdminJS**
+어드민 패널 구현을 위해 사용하였습니다.
 
-## Modules
+# Modules
 ### Domain Module 
 서비스 기능이 존재하는 사용자, 인증, 단어, 퀴즈 각 도메인 별로 모듈을 구성하였습니다.
 ### Global Module
