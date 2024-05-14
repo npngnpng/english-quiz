@@ -9,3 +9,11 @@ export class QueryMyCashResponse {
         this.todayCash = todayCash;
     }
 }
+
+export class QueryCashHistoriesResponse {
+    cashHistories: { reward: number, quiz: string, createdAt: Date }[];
+
+    constructor(cashHistories: { reward: number; quiz: string; createdAt: Date }[]) {
+        this.cashHistories = cashHistories;
+    }
+}

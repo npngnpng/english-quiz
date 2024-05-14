@@ -10,18 +10,31 @@ export class CashHistoryRepositoryImpl implements CashHistoryRepository {
     ) {
     }
 
-    async saveCashHistory(cash: CashHistory): Promise<CashHistory> {
+    async saveCashHistory(cashHistory: CashHistory): Promise<CashHistory> {
         return this.prismaClientService.getClient().cashHistory.create({
             data: {
-                reward: cash.reward,
-                userId: cash.userId,
-                quizId: cash.quizId
+                reward: cashHistory.reward,
+                userId: cashHistory.userId,
+                quizId: cashHistory.quizId
             }
         });
     }
 
-    async findAllByUserId(userId: number): Promise<CashHistory[]> {
+    async findAllByUserId(userId: number): Promise<{quiz: {word: {english: string}}, reward: number, createdAt: Date}[]> {
         return this.prismaClientService.getClient().cashHistory.findMany({
+            select: {
+                reward: true,
+                createdAt: true,
+                quiz: {
+                    select: {
+                        word: {
+                            select: {
+                                english: true
+                            }
+                        }
+                    }
+                }
+            },
             where: {
                 userId: userId
             }

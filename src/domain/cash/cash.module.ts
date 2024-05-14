@@ -6,6 +6,7 @@ import { CashRepositoryImpl } from './repository/cash.repository.impl.js';
 import { CashController } from './controller/cash.controller.js';
 import { QueryMyCashService } from './service/query-my-cash.service.js';
 import { EarnCashService } from './service/earn-cash.service.js';
+import { QueryCashHistoriesService } from './service/query-cash-histories.service.js';
 
 const CASH_HISTORY_REPOSITORY = { provide: CashHistoryRepository, useClass: CashHistoryRepositoryImpl };
 const CASH_REPOSITORY = { provide: CashRepository, useClass: CashRepositoryImpl };
@@ -16,7 +17,8 @@ const CASH_REPOSITORY = { provide: CashRepository, useClass: CashRepositoryImpl 
         CASH_REPOSITORY,
         CASH_HISTORY_REPOSITORY,
         QueryMyCashService,
-        EarnCashService
+        EarnCashService,
+        QueryCashHistoriesService
     ],
     exports: [CASH_REPOSITORY, CASH_HISTORY_REPOSITORY],
     controllers: [CashController]
