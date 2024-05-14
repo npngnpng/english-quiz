@@ -1,7 +1,8 @@
 # english-quiz
 내가 공부하고 싶은 단어를 저장하고, 퀴즈로 풀어볼 수 있는 서비스입니다.
 ## ERD
-<img width="805" alt="image" src="https://github.com/npngnpng/english-quiz/assets/103028187/3935f097-d7ac-405d-9098-e7356a3182a4">
+<img width="804" alt="image" src="https://github.com/npngnpng/english-quiz/assets/103028187/3459067d-883e-48e3-8f61-024a57ee410a">
+
 
 ## Libraries
 
