@@ -8,28 +8,29 @@ datasource db {
 }
 
 model Quiz {
-  wordId    Int      @unique(map: "word_id") @map("word_id")
-  choice    String   @db.VarChar(20)
-  createdAt DateTime @default(now()) @map("created_at") @db.DateTime(0)
-  id        Int      @id @default(autoincrement())
-  userId    Int      @map("user_id")
-  isCorrect Boolean  @map("is_correct")
-  cash      cash[]
-  word      Word     @relation(fields: [wordId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_WORD_ON_QUIZ")
-  user      User     @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "quiz_ibfk_2")
+  wordId      Int          @unique(map: "word_id") @map("word_id")
+  choice      String       @db.VarChar(20)
+  createdAt   DateTime     @default(now()) @map("created_at") @db.DateTime(0)
+  id          Int          @id @default(autoincrement())
+  userId      Int          @map("user_id")
+  isCorrect   Boolean      @map("is_correct")
+  cashHistory CashHistory?
+  word        Word         @relation(fields: [wordId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_WORD_ON_QUIZ")
+  user        User         @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "quiz_ibfk_2")
 
   @@index([userId], map: "user_id")
   @@map("quiz")
 }
 
 model User {
-  id        Int    @id @default(autoincrement())
-  name      String @db.VarChar(30)
-  accountId String @unique(map: "account_id") @map("account_id") @db.VarChar(30)
-  password  String @db.VarChar(60)
-  cash      cash[]
-  quiz      Quiz[]
-  word      Word[]
+  id          Int           @id @default(autoincrement())
+  name        String        @db.VarChar(30)
+  accountId   String        @unique(map: "account_id") @map("account_id") @db.VarChar(30)
+  password    String        @db.VarChar(60)
+  cash        Cash?
+  cashHistory CashHistory[]
+  quiz        Quiz[]
+  word        Word[]
 
   @@map("user")
 }
@@ -47,14 +48,25 @@ model Word {
   @@map("word")
 }
 
-model cash {
+model CashHistory {
   id     Int  @id @default(autoincrement())
   reward Int
   userId Int  @map("user_id")
-  quizId Int  @map("quiz_id")
+  quizId Int  @unique(map: "QUIZ_UNIQUE") @map("quiz_id")
   quiz   Quiz @relation(fields: [quizId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "QUIZ_FK_ON_CASH")
   user   User @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "USER_FK_ON_CASH")
 
-  @@index([quizId], map: "QUIZ_FK_ON_CASH")
   @@index([userId], map: "USER_FK_ON_CASH")
+  @@map("cash_history")
+}
+
+model Cash {
+  id              Int  @id @default(autoincrement())
+  userId          Int  @unique(map: "user_id") @map("user_id")
+  cash            Int  @default(0)
+  unaccountedCash Int  @default(0) @map("unaccounted_cash")
+  todayCash       Int  @default(0) @map("today_cash")
+  user            User @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "USER_FK")
+
+  @@map("cash")
 }
