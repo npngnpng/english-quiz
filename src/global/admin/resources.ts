@@ -23,6 +23,20 @@ export const createUserResource = (prisma: PrismaClientService, componentLoader:
                         joinKey: 'user',
                         resourceId: 'Quiz'
                     }
+                },
+                cash: {
+                    type: RelationType.OneToMany,
+                    target: {
+                        joinKey: 'user',
+                        resourceId: 'Cash'
+                    }
+                },
+                cashHistory: {
+                    type: RelationType.OneToMany,
+                    target: {
+                        joinKey: 'user',
+                        resourceId: 'CashHistory'
+                    }
                 }
             }
 
@@ -62,4 +76,14 @@ export const createWordResource = (prisma: PrismaClientService) => ({
             }
         }
     }
+});
+
+export const createCashResource = (prisma: PrismaClientService) => ({
+    resource: { model: getModelByName('Cash'), client: prisma },
+    options: {}
+});
+
+export const createCashHistoryResource = (prisma: PrismaClientService) => ({
+    resource: { model: getModelByName('CashHistory'), client: prisma },
+    options: {}
 });

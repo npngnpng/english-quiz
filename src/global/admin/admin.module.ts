@@ -3,7 +3,13 @@ import { ConfigService } from '@nestjs/config';
 import { Database, Resource } from '@adminjs/prisma';
 import { PrismaClientService } from '../prisma/prisma.client.js';
 import AdminJS, { ComponentLoader } from 'adminjs';
-import { createQuizResource, createUserResource, createWordResource } from './resources.js';
+import {
+    createCashHistoryResource,
+    createCashResource,
+    createQuizResource,
+    createUserResource,
+    createWordResource
+} from './resources.js';
 
 AdminJS.registerAdapter({ Database, Resource });
 const componentLoader = new ComponentLoader();
@@ -22,7 +28,9 @@ const componentLoader = new ComponentLoader();
                         resources: [
                             createUserResource(prisma, componentLoader, configService.get('ADMINJS_LICENCE')),
                             createQuizResource(prisma),
-                            createWordResource(prisma)
+                            createWordResource(prisma),
+                            createCashResource(prisma),
+                            createCashHistoryResource(prisma)
 
                         ]
                     },
