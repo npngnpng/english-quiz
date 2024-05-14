@@ -49,12 +49,13 @@ model Word {
 }
 
 model CashHistory {
-  id     Int  @id @default(autoincrement())
-  reward Int
-  userId Int  @map("user_id")
-  quizId Int  @unique(map: "QUIZ_UNIQUE") @map("quiz_id")
-  quiz   Quiz @relation(fields: [quizId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "QUIZ_FK_ON_CASH")
-  user   User @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "USER_FK_ON_CASH")
+  id        Int      @id @default(autoincrement())
+  reward    Int
+  userId    Int      @map("user_id")
+  quizId    Int      @unique(map: "QUIZ_UNIQUE") @map("quiz_id")
+  createdAt DateTime @default(now()) @map("created_at") @db.DateTime(0)
+  quiz      Quiz     @relation(fields: [quizId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "QUIZ_FK_ON_CASH")
+  user      User     @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "USER_FK_ON_CASH")
 
   @@index([userId], map: "USER_FK_ON_CASH")
   @@map("cash_history")

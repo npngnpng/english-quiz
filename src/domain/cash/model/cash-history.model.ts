@@ -3,6 +3,7 @@ export class CashHistory {
     reward: number;
     userId: number;
     quizId: number;
+    createdAt: Date;
 
 
     constructor(reward: number, userId: number, quizId: number, id?: number) {
