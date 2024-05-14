@@ -33,7 +33,8 @@ export class CashRepositoryImpl implements CashRepository {
             },
             data: {
                 cash: cash.cash,
-                unaccountedCash: cash.unaccountedCash
+                unaccountedCash: cash.unaccountedCash,
+                todayCash: cash.todayCash
             }
         });
     }
