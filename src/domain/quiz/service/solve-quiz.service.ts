@@ -5,8 +5,10 @@ import { SolveQuizRequest } from '../controller/dto/quiz.request.js';
 import { User } from '../../user/model/user.model.js';
 import { Quiz, updateQuiz } from '../model/quiz.model.js';
 import { SolveQuizResponse } from '../controller/dto/quiz.response.js';
+import { CashHistoryRepository } from '../../cash/repository/cash-history.repository.js';
+import { CashHistory } from '../../cash/model/cash-history.model.js';
 import { CashRepository } from '../../cash/repository/cash.repository.js';
-import { Cash } from '../../cash/model/cash.model.js';
+import { addUnaccountedCash, Cash, getReward } from '../../cash/model/cash.model.js';
 
 @Injectable()
 export class SolveQuizService {
@@ -15,6 +17,8 @@ export class SolveQuizService {
         private readonly quizRepository: QuizRepository,
         @Inject(WordRepository)
         private readonly wordRepository: WordRepository,
+        @Inject(CashHistoryRepository)
+        private readonly cashHistoryRepository: CashHistoryRepository,
         @Inject(CashRepository)
         private readonly cashRepository: CashRepository
     ) {
@@ -23,6 +27,7 @@ export class SolveQuizService {
     async execute(wordId: number, request: SolveQuizRequest, currentUser: User): Promise<SolveQuizResponse> {
         const word = await this.wordRepository.findById(wordId);
         const quiz = await this.quizRepository.findByWordId(wordId);
+        const cash = await this.cashRepository.findByUserId(currentUser.id);
         if (!word) {
             throw new NotFoundException('Word Not Found');
         }
@@ -30,13 +35,13 @@ export class SolveQuizService {
             throw new ForbiddenException('Invalid User');
         }
 
-        const reword = Math.floor(Math.random() * (10 - 1) + 1);
+        const reword = getReward(cash);
         const isBeforeQuizCorrect = quiz?.isCorrect;
         if (quiz) {
             updateQuiz(quiz, request.choice, request.choice === word.korean);
             await this.quizRepository.updateQuiz(quiz);
             if (!isBeforeQuizCorrect) {
-                await this.createCashIfCorrect(request.choice, word.korean, currentUser.id, quiz.id, reword);
+                await this.addCashIfCorrect(request.choice, word.korean, currentUser.id, quiz.id, reword, cash);
             }
         } else {
             const solvedQuiz = await this.quizRepository.saveQuiz(new Quiz(
@@ -45,7 +50,7 @@ export class SolveQuizService {
                 request.choice === word.korean,
                 request.choice
             ));
-            await this.createCashIfCorrect(request.choice, word.korean, currentUser.id, solvedQuiz.id, reword);
+            await this.addCashIfCorrect(request.choice, word.korean, currentUser.id, solvedQuiz.id, reword, cash);
         }
 
         return new SolveQuizResponse(
@@ -54,13 +59,22 @@ export class SolveQuizService {
         );
     }
 
-    private async createCashIfCorrect(choice: string, korean: string, userId: number, quizId: number, reword: number) {
+    private async addCashIfCorrect(
+        choice: string,
+        korean: string,
+        userId: number,
+        quizId: number,
+        reward: number,
+        cash: Cash
+    ) {
         if (choice === korean) {
-            await this.cashRepository.saveCash(new Cash(
-                reword,
+            await this.cashHistoryRepository.saveCashHistory(new CashHistory(
+                reward,
                 userId,
                 quizId
             ));
+            addUnaccountedCash(cash, reward);
+            await this.cashRepository.updateCash(cash);
         }
     }
 }
