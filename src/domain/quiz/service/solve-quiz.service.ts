@@ -38,11 +38,11 @@ export class SolveQuizService {
         const reword = getReward(cash);
         const isBeforeQuizCorrect = quiz?.isCorrect;
         if (quiz) {
-            updateQuiz(quiz, request.choice, request.choice === word.korean);
-            await this.quizRepository.updateQuiz(quiz);
             if (!isBeforeQuizCorrect) {
                 await this.addCashIfCorrect(request.choice, word.korean, currentUser.id, quiz.id, reword, cash);
+                updateQuiz(quiz, request.choice, request.choice === word.korean);
             }
+            await this.quizRepository.updateQuiz(quiz);
         } else {
             const solvedQuiz = await this.quizRepository.saveQuiz(new Quiz(
                 word.id,
