@@ -78,7 +78,8 @@ npm run start
 
 ## ERD
 
-<img width="804" alt="image" src="https://github.com/npngnpng/english-quiz/assets/103028187/3459067d-883e-48e3-8f61-024a57ee410a">
+<img width="845" alt="image" src="https://github.com/npngnpng/english-quiz/assets/103028187/c045c0a4-8709-461f-8040-09f05773cf1b">
+
 
 ## Table
 
@@ -581,10 +582,14 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJnZ2d1Z2cwN
 ## Admin
 
 AdminJS 라이브러리를 이용해 어드민 웹을 구현하였습니다.\
-(사진)\
+환경변수에서 설정한 어드민의 아이디와 비밀번호를 입력하고 로그인할 수 있습니다.
+<img width="1440" alt="스크린샷 2024-05-14 오후 11 25 54" src="https://github.com/npngnpng/english-quiz/assets/103028187/96b58ed2-f1e6-49f3-a8af-765d10e492a9">
+
 왼쪽 네비게이션에서 User를 선택해 사용자 정보를 확인해 볼 수 있습니다.\
-(사진)\
-사용자를 선택해 사용자가 작성한 단어와 퀴즈들을 확인해 볼 수 있습니다.
+<img width="1441" alt="스크린샷 2024-05-14 오후 11 29 55" src="https://github.com/npngnpng/english-quiz/assets/103028187/0bfc95b0-4d2b-44b6-81c4-69573af16d59">
+
+사용자를 선택해 사용자가 작성한 단어와 퀴즈, 캐시와 캐시내역들을 확인해 볼 수 있습니다.
+<img width="1440" alt="스크린샷 2024-05-14 오후 11 30 09" src="https://github.com/npngnpng/english-quiz/assets/103028187/d329ebcf-df06-415b-9b96-5a60b3f86540">
 
 
 # 개선할 점
